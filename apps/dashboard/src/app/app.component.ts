@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Message } from '@got/api-interfaces';
 
 @Component({
   selector: 'got-root',
@@ -8,6 +6,9 @@ import { Message } from '@got/api-interfaces';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  hello$ = this.http.get<Message>('/api/hello');
-  constructor(private http: HttpClient) {}
+  title = 'Game Of Thrones';
+  links = [
+    { path: '/', icon: 'home', title: 'Login' },
+    { path: 'characters', icon: 'view_list', title: 'Characters' },
+  ];
 }

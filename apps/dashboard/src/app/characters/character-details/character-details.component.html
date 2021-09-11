@@ -1,0 +1,79 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title *ngIf="currentCharacter.id; elseSubmit">
+      <h1>Update {{ originalName }}</h1>
+    </mat-card-title>
+    <ng-template #elseSubmit>
+      <h1>Submit a New Character</h1>
+    </ng-template>
+  </mat-card-header>
+  <form
+    [formGroup]="form"
+    #formDirective="ngForm"
+    (ngSubmit)="saveForm(formDirective)"
+  >
+    <mat-card-content>
+      <mat-form-field class="full-width" appearance="outline" floatlabel>
+        <mat-label>First Name</mat-label>
+        <input
+          matInput
+          placeholder="First Name"
+          formControlName="firstName"
+          type="text"
+          name="firstName"
+        />
+        <mat-error *ngIf="form.get('firstName')">Required Field</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline" floatlabel>
+        <mat-label>Last Name</mat-label>
+        <input
+          matInput
+          placeholder="Last Name"
+          formControlName="lastName"
+          type="text"
+          name="lastName"
+        />
+        <mat-error *ngIf="form.get('lastName')">Required Field</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline" floatlabel>
+        <mat-label>Full Name</mat-label>
+        <input
+          matInput
+          placeholder="Full Name"
+          formControlName="fullName"
+          type="text"
+          name="fullName"
+        />
+        <mat-error *ngIf="form.get('fullName')">Required Field</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline" floatlabel>
+        <mat-label>Title</mat-label>
+        <input
+          matInput
+          placeholder="Title"
+          formControlName="title"
+          type="text"
+          name="title"
+        />
+        <mat-error *ngIf="form.get('title')">Required Field</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline" floatlabel>
+        <mat-label>Family</mat-label>
+        <input
+          matInput
+          placeholder="Family"
+          formControlName="family"
+          type="text"
+          name="family"
+        />
+        <mat-error *ngIf="form.get('family')">Required Field</mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button type="submit" [disabled]="form.invalid">
+        {{ currentCharacter.id ? 'Create' : 'Update' }}
+      </button>
+      <button type="button" mat-button (click)="cancel()">Cancel</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
