@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title *ngIf="currentCharacter.id; elseSubmit">
+    <mat-card-title *ngIf="currentCharacter.$int32; elseSubmit">
       <h1>Update {{ originalName }}</h1>
     </mat-card-title>
     <ng-template #elseSubmit>
@@ -71,7 +71,7 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-button type="submit" [disabled]="form.invalid">
-        {{ currentCharacter.id ? 'Create' : 'Update' }}
+        {{ currentCharacter.$int32 ? 'Create' : 'Update' }}
       </button>
       <button type="button" mat-button (click)="cancel()">Cancel</button>
     </mat-card-actions>

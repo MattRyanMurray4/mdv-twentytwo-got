@@ -19,7 +19,7 @@
       "@got/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@got/core-data": ["libs/core-data/src/index.ts"],
       "@got/core-state": ["libs/core-state/src/index.ts"],
-      "@got/environment": ["libs/environment/src/index.ts"],
+      "@env/environments": ["libs/environment/src/lib/environments/index.ts"],
       "@got/material": ["libs/material/src/index.ts"],
       "@got/theme": ["libs/theme/src/index.ts"],
       "@got/ui-library": ["libs/ui-library/src/index.ts"]

@@ -2,9 +2,7 @@ import { mapTo } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Character } from '@got/api-interfaces';
-
-export const BASE_URL = '';
-// https://warm-river-13356.herokuapp.com/
+import { environment } from '@env/environments';
 
 @Injectable({
   providedIn: 'root',
@@ -14,35 +12,37 @@ export class CharacterService {
   constructor(private httpClient: HttpClient) {}
 
   all() {
-    return this.httpClient.get<Character[]>(this.getUrl());
+    return this.httpClient.get<Character[]>(this.getApi(), {
+      params: { limit: 5 },
+    });
   }
 
-  find(id: string) {
-    return this.httpClient.get<Character>(this.getUrlById(id));
+  find($int32: string) {
+    return this.httpClient.get<Character>(this.getApiById($int32));
   }
 
   create(character: Character) {
-    return this.httpClient.post<Character>(this.getUrl(), character);
+    return this.httpClient.post<Character>(this.getApi(), character);
   }
 
   update(character: Character) {
     return this.httpClient.patch<Character>(
-      this.getUrlById(character.id),
+      this.getApiById(character.$int32),
       character
     );
   }
 
-  delete(characterId: string) {
+  delete($int32: string) {
     return this.httpClient
-      .delete<string>(this.getUrlById(characterId))
-      .pipe(mapTo(characterId));
+      .delete<string>(this.getApiById($int32))
+      .pipe(mapTo($int32));
   }
 
-  private getUrl() {
-    return `${BASE_URL}${this.model}`;
+  private getApi() {
+    return `${environment.apiUrl}${this.model}`;
   }
 
-  private getUrlById(id: string) {
-    return `${this.getUrl()}/${id}`;
+  private getApiById($int32: string) {
+    return `${this.getApi()}/${$int32}`;
   }
 }

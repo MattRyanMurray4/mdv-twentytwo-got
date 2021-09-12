@@ -30,7 +30,7 @@ export class CharactersComponent implements OnInit {
   }
 
   selectCharacter(character: Character) {
-    this.charactersFacade.selectCharacter(character.id);
+    this.charactersFacade.selectCharacter(character.$int32);
     this.form.patchValue(character);
   }
 
@@ -50,7 +50,7 @@ export class CharactersComponent implements OnInit {
   }
 
   saveCharacter(character: Character) {
-    character.id
+    character.$int32
       ? this.charactersFacade.updateCharacter(character)
       : this.charactersFacade.createCharacter(character);
     this.reset();
@@ -67,7 +67,7 @@ export class CharactersComponent implements OnInit {
 
   private initForm() {
     this.form = this.formBuilder.group({
-      id: null,
+      $int32: null,
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       fullName: ['', Validators.required],

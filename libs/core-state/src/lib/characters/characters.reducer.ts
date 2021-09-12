@@ -71,23 +71,23 @@ const _charactersReducer = createReducer(
   on(CharactersActions.loadCharacterSuccess, (state, { character }) =>
     charactersAdapter.upsertOne(character, { ...state, loaded: true })
   ),
-  on(CharactersActions.selectCharacter, (state, { characterId }) => ({
+  on(CharactersActions.selectCharacter, (state, { $int32 }) => ({
     ...state,
-    selectedId: characterId,
+    selectedId: $int32,
   })),
   on(CharactersActions.createCharacterSuccess, (state, { character }) =>
     charactersAdapter.addOne(character, { ...state, loaded: true })
   ),
   on(
     CharactersActions.updateCharacterSuccess,
-    (state, { character: { id, ...restCharacter } }) =>
+    (state, { character: { $int32, ...restCharacter } }) =>
       charactersAdapter.updateOne(
-        { id, changes: { ...restCharacter } },
+        { id: $int32, changes: { ...restCharacter } },
         { ...state, loaded: true }
       )
   ),
-  on(CharactersActions.deleteCharacterSuccess, (state, { id }) =>
-    charactersAdapter.removeOne(id, { ...state, loaded: true })
+  on(CharactersActions.deleteCharacterSuccess, (state, { $int32 }) =>
+    charactersAdapter.removeOne($int32, { ...state, loaded: true })
   )
 );
 

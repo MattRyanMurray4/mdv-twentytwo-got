@@ -22,18 +22,16 @@ export class CharactersFacade {
     this.store.dispatch(CharactersActions.init());
   }
 
-  loadCharacter(id: string) {
-    return this.store.dispatch(CharactersActions.loadCharacter({ id }));
+  loadCharacter($int32: string) {
+    return this.store.dispatch(CharactersActions.loadCharacter({ $int32 }));
   }
 
   loadCharacters() {
     return this.store.dispatch(CharactersActions.loadCharacters());
   }
 
-  selectCharacter(characterId: string) {
-    return this.store.dispatch(
-      CharactersActions.selectCharacter({ characterId })
-    );
+  selectCharacter($int32: string) {
+    return this.store.dispatch(CharactersActions.selectCharacter({ $int32 }));
   }
 
   createCharacter(character: Character) {

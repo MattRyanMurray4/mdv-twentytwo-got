@@ -1,25 +1,4 @@
 import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { fetch } from '@nrwl/angular';
-import { map, switchMap, tap, catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
-import {
-  loadCharacter,
-  loadCharacterFailure,
-  loadCharacterSuccess,
-  loadCharacters,
-  loadCharactersFailure,
-  loadCharactersSuccess,
-  createCharacter,
-  createCharacterFailure,
-  createCharacterSuccess,
-  updateCharacter,
-  updateCharacterFailure,
-  updateCharacterSuccess,
-  deleteCharacter,
-  deleteCharacterFailure,
-  deleteCharacterSuccess,
-} from './characters.actions';
 import {
   actionTypeNamePastTense,
   actionTypeNamePresentTense,
@@ -27,16 +6,34 @@ import {
   getActionType,
   NotifyService,
 } from '@got/core-data';
-import * as CharactersActions from './characters.actions';
-import * as CharactersFeature from './characters.reducer';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { of } from 'rxjs';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import {
+  createCharacter,
+  createCharacterFailure,
+  createCharacterSuccess,
+  deleteCharacter,
+  deleteCharacterFailure,
+  deleteCharacterSuccess,
+  loadCharacter,
+  loadCharacterFailure,
+  loadCharacters,
+  loadCharactersFailure,
+  loadCharactersSuccess,
+  loadCharacterSuccess,
+  updateCharacter,
+  updateCharacterFailure,
+  updateCharacterSuccess,
+} from './characters.actions';
 
 @Injectable()
 export class CharactersEffects {
   loadCharacter$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadCharacter),
-      switchMap(({ id }) =>
-        this.characterService.find(id).pipe(
+      switchMap(({ $int32 }) =>
+        this.characterService.find($int32).pipe(
           map((character) => loadCharacterSuccess({ character })),
           catchError((error) => of(loadCharacterFailure({ error })))
         )
@@ -84,8 +81,8 @@ export class CharactersEffects {
     this.actions$.pipe(
       ofType(deleteCharacter),
       switchMap(({ character }) =>
-        this.characterService.delete(character.id).pipe(
-          map((id) => deleteCharacterSuccess({ id })),
+        this.characterService.delete(character.$int32).pipe(
+          map(($int32) => deleteCharacterSuccess({ $int32 })),
           catchError((error) => of(deleteCharacterFailure({ error })))
         )
       )

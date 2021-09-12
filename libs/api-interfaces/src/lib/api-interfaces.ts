@@ -1,5 +1,5 @@
 export interface Character {
-  id: string;
+  $int32: string;
   firstName: string;
   lastName: string;
   fullName: string;
@@ -9,7 +9,7 @@ export interface Character {
   imageUrl: string;
 }
 export const emptyCharacter = {
-  id: '',
+  $int32: '',
   firstName: '',
   lastName: '',
   fullName: '',

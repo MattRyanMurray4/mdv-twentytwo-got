@@ -21,7 +21,7 @@ export const loadCharactersFailure = createAction(
 
 export const loadCharacter = createAction(
   '[Character] Load A Character',
-  props<{ id: string }>()
+  props<{ $int32: string }>()
 );
 export const loadCharacterSuccess = createAction(
   '[Character] Loaded Character Success',
@@ -36,7 +36,7 @@ export const loadCharacterFailure = createAction(
 
 export const selectCharacter = createAction(
   '[Character] Select A Character',
-  props<{ characterId: string }>()
+  props<{ $int32: string }>()
 );
 
 // create
@@ -77,7 +77,7 @@ export const deleteCharacter = createAction(
 );
 export const deleteCharacterSuccess = createAction(
   '[Character] Deleted Character Success',
-  props<{ id: string }>()
+  props<{ $int32: string }>()
 );
 export const deleteCharacterFailure = createAction(
   '[Character] Deleted Character Failure',
